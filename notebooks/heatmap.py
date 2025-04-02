@@ -4,7 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Load the dataset
-df = pd.read_csv("housing-subset (1).csv")
+df = pd.read_csv("housing-subset.csv")
 
 # Prepare data for heatmap
 heatmap_data = df[["median_income", "housing_median_age", "population", "median_house_value"]]
