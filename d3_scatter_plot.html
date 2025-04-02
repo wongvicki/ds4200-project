@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Interactive Housing Price Map</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { font-family: sans-serif; }
+    .tooltip {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 12px;
+      pointer-events: none;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Interactive Scatter Plot: Housing Prices by Location</h2>
+  <svg width="800" height="600"></svg>
+  <script>
+    const svg = d3.select("svg"),
+          width = +svg.attr("width"),
+          height = +svg.attr("height");
+
+    const tooltip = d3.select("body").append("div").attr("class", "tooltip");
+
+    d3.csv("housing-subset (1).csv").then(data => {
+      data.forEach(d => {
+        d.latitude = +d.latitude;
+        d.longitude = +d.longitude;
+        d.median_house_value = +d.median_house_value;
+      });
+
+      const x = d3.scaleLinear()
+        .domain(d3.extent(data, d => d.longitude))
+        .range([50, width - 50]);
+
+      const y = d3.scaleLinear()
+        .domain(d3.extent(data, d => d.latitude))
+        .range([height - 50, 50]);
+
+      const color = d3.scaleSequential(d3.interpolateViridis)
+        .domain(d3.extent(data, d => d.median_house_value));
+
+      svg.selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", d => x(d.longitude))
+        .attr("cy", d => y(d.latitude))
+        .attr("r", 4)
+        .attr("fill", d => color(d.median_house_value))
+        .attr("opacity", 0.7)
+        .on("mouseover", function(event, d) {
+          tooltip.transition().duration(200).style("opacity", 0.9);
+          tooltip.html(`Price: $${d.median_house_value}<br>Lat: ${d.latitude}, Long: ${d.longitude}`)
+                 .style("left", (event.pageX + 10) + "px")
+                 .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+          tooltip.transition().duration(500).style("opacity", 0);
+        });
+    });
+  </script>
+</body>
+</html>
