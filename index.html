@@ -56,32 +56,43 @@
         </p>
         
         <br>
-        <h3>CHOROPLETH MAP OF MEDIAN HOME PRICE</h3>
-        <div class="container">
-            <div class="text">
-                <p>
-                    This interactive map displays median housing prices by county. Visually, we can see that 
-                    the higher housing prices are concentrated near the coastline, which supports the idea 
-                    that ocean proximity is a strong factor in housing prices.
-                </p>
-                <p>
-                    To create this visualization, we combined our housing data, which contained longitude and 
-                    latitude points, and county-level data for California. Initially, we had created a spatial 
-                    plot with marks for each of the data points, and an on-click display of median house value. 
-                    While being able to see precise locations was insightful, this was ultimately an ineffective 
-                    way of summarizing our data, since there was such a high density and range of points in 
-                    urban areas like the Bay Area.
-                </p>
-                <p>
-                    To fix this problem, we instead chose to color code counties by their median housing price. 
-                    Hovering displays the county name, and the median housing price and income is displayed on 
-                    click. Additionally, given that this is a map, there is an implicit understanding of 
-                    the proximity to the ocean.
-                </p>
-            </div>
-            <div class="image">
-                <iframe src="spatial.html" width="100%" height="450px" frameborder="0"></iframe>
-            </div>
+        <h3>D3 Scatter Plot: Interactive Housing Prices by Location</h3>
+        <div class="text">
+              <p>
+                  The D3 scatter plot shows housing prices across California based on location. Each dot represents a home, 
+                  positioned using its longitude on the X-axis and latitude on the Y-axis — just like a real map. Color 
+                  indicates the home’s value, with brighter points showing higher prices. Most expensive homes cluster 
+                  along the coast, especially in cities like San Francisco, LA, and San Diego. 
+              </p>
+              <p>
+                  The chart is interactive: when you hover over a point, it shows the exact price and location. D3 loads 
+                  the data from a CSV file, maps it with coordinate scales, and colors it using a gradient. This makes 
+                  it easy to explore patterns and see how geography affects real estate.
+
+              </p>
+        </div>
+        <div class="center">
+              <iframe src="d3_scatter_plot.html" width="100%" height="600px" frameborder="0"></iframe>
+        </div>
+
+        <br>
+        <h3>Correlation Heatmap: Income, Age, Population vs House Value</h3>
+        <div class="text">
+            <p>
+                The heatmap shows the relationship between key housing variables. The strongest positive correlation 
+                is between median income and median house value at +0.69, meaning that higher-income areas tend to 
+                have more expensive homes. In contrast, housing median age and population have much weaker or slightly 
+                negative correlations with house value, suggesting they play a less significant role in determining price. 
+            </p>
+            <p>
+                The chart was created using Seaborn with a coolwarm color palette, where warm colors like red represent
+                strong positive correlations and cool colors like blue indicate negative correlations. Labeled values 
+                and color contrast make it easy to spot patterns and compare how strongly different variables are 
+                related to housing prices.
+            </p>
+        </div>
+        <div class="center">
+            <iframe src="heatmap_output.png" width="100%" height="600px" frameborder="0"></iframe>
         </div>
 
         <br>
@@ -128,43 +139,32 @@
         </div>
 
         <br>
-        <h3>Correlation Heatmap: Income, Age, Population vs House Value</h3>
-        <div class="text">
-            <p>
-                The heatmap shows the relationship between key housing variables. The strongest positive correlation 
-                is between median income and median house value at +0.69, meaning that higher-income areas tend to 
-                have more expensive homes. In contrast, housing median age and population have much weaker or slightly 
-                negative correlations with house value, suggesting they play a less significant role in determining price. 
-            </p>
-            <p>
-                The chart was created using Seaborn with a coolwarm color palette, where warm colors like red represent
-                strong positive correlations and cool colors like blue indicate negative correlations. Labeled values 
-                and color contrast make it easy to spot patterns and compare how strongly different variables are 
-                related to housing prices.
-            </p>
-        </div>
-        <div class="center">
-            <iframe src="heatmap_output.png" width="100%" height="600px" frameborder="0"></iframe>
-        </div>
-
-        <br>
-        <h3>D3 Scatter Plot: Interactive Housing Prices by Location</h3>
-        <div class="text">
-              <p>
-                  The D3 scatter plot shows housing prices across California based on location. Each dot represents a home, 
-                  positioned using its longitude on the X-axis and latitude on the Y-axis — just like a real map. Color 
-                  indicates the home’s value, with brighter points showing higher prices. Most expensive homes cluster 
-                  along the coast, especially in cities like San Francisco, LA, and San Diego. 
-              </p>
-              <p>
-                  The chart is interactive: when you hover over a point, it shows the exact price and location. D3 loads 
-                  the data from a CSV file, maps it with coordinate scales, and colors it using a gradient. This makes 
-                  it easy to explore patterns and see how geography affects real estate.
-
-              </p>
-        </div>
-        <div class="center">
-              <iframe src="d3_scatter_plot.html" width="100%" height="600px" frameborder="0"></iframe>
+        <h3>CHOROPLETH MAP OF MEDIAN HOME PRICE</h3>
+        <div class="container">
+            <div class="text">
+                <p>
+                    This interactive map displays median housing prices by county. Visually, we can see that 
+                    the higher housing prices are concentrated near the coastline, which supports the idea 
+                    that ocean proximity is a strong factor in housing prices.
+                </p>
+                <p>
+                    To create this visualization, we combined our housing data, which contained longitude and 
+                    latitude points, and county-level data for California. Initially, we had created a spatial 
+                    plot with marks for each of the data points, and an on-click display of median house value. 
+                    While being able to see precise locations was insightful, this was ultimately an ineffective 
+                    way of summarizing our data, since there was such a high density and range of points in 
+                    urban areas like the Bay Area.
+                </p>
+                <p>
+                    To fix this problem, we instead chose to color code counties by their median housing price. 
+                    Hovering displays the county name, and the median housing price and income is displayed on 
+                    click. Additionally, given that this is a map, there is an implicit understanding of 
+                    the proximity to the ocean.
+                </p>
+            </div>
+            <div class="image">
+                <iframe src="spatial.html" width="100%" height="450px" frameborder="0"></iframe>
+            </div>
         </div>
 
 
