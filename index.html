@@ -85,7 +85,7 @@
 
         <br>
         <div class="center">
-            <iframe src="scatter.html" width="70%" height="415" frameborder="0"></iframe>
+            <iframe src="scatter.html" width="70%" height="415px" frameborder="0"></iframe>
         </div>
         <div class="text">
             <p>
@@ -105,7 +105,50 @@
             </p>
         </div>
 
+        <div class="container">
+            <div class="image">
+                <iframe src="boxplot.html" width="100%" height="400px" frameborder="0"></iframe>
+            </div>
+            <div class="text">
+                <p>
+                    These boxplots aim to show the distribution of median home values by their proximity to the
+                    ocean. We can see immediately that inland homes had the lowest distribution and several outliers,
+                    meaning that prices did stretch upwards but were not found as frequent as homes in other areas. We
+                    can then see that homes near the ocean and those near the bay both had very similar distributions.
+                    Unlike the other categories, island homes had a very constrited range, revealing more consistent
+                    home pricing trends.
+                </p>
+                <p>
+                    Utilizing several boxplots like this allows individuals to easily view and compare data across 
+                    many different categories. On hover, the chart will display more advanced statistics for each plot,
+                    giving insight into the category's maximum, minimum, range, quartiles, and median.
+                </p>
+            </div>
+        </div>
+
         <br>
+        <div class="text">
+            <p>
+                Through a heatmap, we aim to show the relationship between several variables in the dataset, including
+                median income, median house value, the age of the house, and the population - the total number of 
+                people residing within a particular block. We can see that median house value and median household 
+                income had the strongest positive correlation at 0.69, while the relationship between a household's
+                median income and the population had the weakest overall correlation. Continuing, a home's age and 
+                the population on the block had a moderate negative correlation, as well as age and median income,
+                although that was much weaker. Understanding the relationships between the variables helps to clarify
+                trends within the dataset.
+            </p>
+        </div>
+        <div class="center">
+            <iframe src="heatmap_output.png" width="100%" height="600px" frameborder="0"></iframe>
+        </div>
+
         <h3>CONCLUSION</h3>
+        <p>
+            Through this visualization analysis, we aimed to explore housing records in California to discover how 
+            factors such as income, population density, location, and home features affected the prices of homes. In 
+            all, we discovered that elements such as proximity to the ocean and a household's median income had the 
+            largest relationship with the home's price.
+        </p>
     </body>
 </html>
