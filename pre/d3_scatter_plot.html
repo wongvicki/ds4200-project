@@ -27,7 +27,7 @@
 
     const tooltip = d3.select("body").append("div").attr("class", "tooltip");
 
-    d3.csv("housing-subset (1).csv").then(data => {
+    d3.csv("housing-subset.csv").then(data => {
       data.forEach(d => {
         d.latitude = +d.latitude;
         d.longitude = +d.longitude;
