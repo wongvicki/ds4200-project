@@ -130,17 +130,16 @@
         <h3>Correlation Heatmap: Income, Age, Population vs House Value</h3>
         <div class="text">
             <p>
-                The heatmap visualization reveals that median income has the strongest positive correlation (+0.69) 
-                with median house value among the variables analyzed. This indicates that higher-income areas 
-                generally have higher housing prices in California. On the other hand, housing median age and population
-                exhibit much weaker relationships to house value, with correlations near zero or slightly negative. These 
-                findings suggest that while newer or older homes and population size may have some impact, income levels 
-                are a far more influential factor in determining housing prices. 
+                The heatmap shows the relationship between key housing variables. The strongest positive correlation 
+                is between median income and median house value at +0.69, meaning that higher-income areas tend to 
+                have more expensive homes. In contrast, housing median age and population have much weaker or slightly 
+                negative correlations with house value, suggesting they play a less significant role in determining price. 
             </p>
             <p>
-                The design of the heatmap, created using Seaborn, incorporates a coolwarm color palette and clearly
-                labeled values to highlight both positive and negative relationships. This layout allows viewers to 
-                quickly identify trends and compare the strength of associations between multiple variables in one glance.
+                The chart was created using Seaborn with a coolwarm color palette, where warm colors like red represent
+                strong positive correlations and cool colors like blue indicate negative correlations. Labeled values 
+                and color contrast make it easy to spot patterns and compare how strongly different variables are 
+                related to housing prices.
             </p>
         </div>
         <div class="center">
@@ -151,16 +150,16 @@
         <h3>D3 Scatter Plot: Interactive Housing Prices by Location</h3>
         <div class="text">
               <p>
-                    The D3 scatter plot visualizes the geographic distribution of housing prices across California
-                    using latitude and longitude coordinates from the dataset. Each point represents a housing unit,
-                    with color intensity reflecting its median house value. From this visualization, it is clear
-                    that the most expensive housing is concentrated along the coast—particularly around urban centers
-                    like San Francisco, Los Angeles, and San Diego.
+                  The D3 scatter plot shows housing prices across California based on location. Each dot represents a home, 
+                  positioned using its longitude on the X-axis and latitude on the Y-axis — just like a real map. Color 
+                  indicates the home’s value, with brighter points showing higher prices. Most expensive homes cluster 
+                  along the coast, especially in cities like San Francisco, LA, and San Diego. 
               </p>
               <p>
-                    The use of interactive D3 elements, such as dynamic tooltips and hover effects, allows users to
-                    explore spatial trends more intuitively. This interactive chart highlights how geographic location—
-                    especially proximity to coastlines—significantly influences real estate prices in California.
+                  The chart is interactive: when you hover over a point, it shows the exact price and location. D3 loads 
+                  the data from a CSV file, maps it with coordinate scales, and colors it using a gradient. This makes 
+                  it easy to explore patterns and see how geography affects real estate.
+
               </p>
         </div>
         <div class="center">
