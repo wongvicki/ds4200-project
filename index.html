@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <br>
         <h1>The California Housing Market</h1>
         <h2><i>Exploring Economic, Geographic, and Climate Influences</i></h2>
 
@@ -40,28 +41,100 @@
             <a href="https://www.kaggle.com/datasets/camnugent/california-housing-prices">Kaggle</a>. 
             This data contains information from the California census in 1990. There are over 20.6k data 
             points in this dataset, meaning that we will only take a subset of the data (10k points) for 
-            our use.
-        </p>
-        <p>
-            The variables in this dataset are longitude and latitude (spatial, indicating the 
-            geographic location of a block), housing median age (quantitative, median age of a house 
-            within a block), total rooms and total bedrooms (quantitative, number of rooms/bedrooms 
-            within a block), population (quantitative, total number of people residing within a block), 
-            households (quantitative, groups of people residing within a home unit in a block), 
-            median income (quantitative), median house value (quantitative), and ocean proximity (categorical).
-            Additionally, county-level data was used for the interactive map visualizations and was 
+            our use. To supplement this information, county-level data was used for the interactive map visualizations and was 
             downloaded from 
             <a href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-2-counties/">
-                Natural Earth</a>.
+                Natural Earth</a>. More details about the features in our data are listed in the table below. 
         </p>
-        
+        <div class="center">
+            <table class="tg">
+                <thead>
+                    <tr>
+                      <th class="tg-0lax">Feature Name</th>
+                      <th class="tg-0lax">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="tg-0lax">Longitude</td>
+                        <td class="tg-0lax">A measure of how far west a house is, higher values being further west.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Latitude</td>
+                        <td class="tg-0lax">A measure of how far north a house is, higher values being further north.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">housingMedianAge</td>
+                        <td class="tg-0lax">Median age of a house within a block; a lower number is a newer building.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">totalRooms</td>
+                        <td class="tg-0lax">Total number of rooms within a block.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">totalBedrooms</td>
+                        <td class="tg-0lax">Total number of bedrooms within a block.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Population</td>
+                        <td class="tg-0lax">Total number of people residing within a block.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">Households</td>
+                        <td class="tg-0lax">Total number of households, a group of people residing within a home unit, for a block.</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">medianIncome</td>
+                        <td class="tg-0lax">Median income for households within a block of houses (measured in tens of thousands of US Dollars).</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">medianHouseValue</td>
+                        <td class="tg-0lax">Median house value for households within a block (measured in US Dollars).</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-0lax">oceanProximity</td>
+                        <td class="tg-0lax">Location of the house with respect to the sea.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <br>
-        <h3>D3 SCATTER PLOT: INTERACTIVE HOUSING PRICES BY LOCATION</h3>
+        <h3>CHOROPLETH MAP OF MEDIAN HOME PRICE</h3>
+        <div class="container">
+            <div class="text">
+                <p>
+                    This interactive map displays median housing prices by county. Visually, we can see that 
+                    the higher housing prices are concentrated near the coastline, which supports the idea 
+                    that ocean proximity is a strong factor in housing prices.
+                </p>
+                <p>
+                    To create this visualization, we combined our housing data, which contained longitude and 
+                    latitude points, and county-level data for California. Initially, we had created a spatial 
+                    plot with marks for each of the data points, and an on-click display of median house value. 
+                    While being able to see precise locations was insightful, this was ultimately an ineffective 
+                    way of summarizing our data, since there was such a high density and range of points in 
+                    urban areas like the Bay Area.
+                </p>
+                <p>
+                    To fix this problem, we instead chose to color code counties by their median housing price. 
+                    Hovering displays the county name, and the median housing price and income is displayed on 
+                    click. Additionally, given that this is a map, there is an implicit understanding of 
+                    the proximity to the ocean.
+                </p>
+            </div>
+            <div class="image">
+                <iframe src="spatial.html" width="100%" height="450px" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <br>
+        <h3>D3 - INTERACTIVE HOUSING PRICES BY LOCATION</h3>
         <div class="text">
               <p>
                   The D3 scatter plot shows housing prices across California based on location. Each dot represents a home, 
                   positioned using its longitude on the X-axis and latitude on the Y-axis — just like a real map. Color 
-                  indicates the home’s value, with brighter points showing higher prices. Most expensive homes cluster 
+                  indicates the home's value, with brighter points showing higher prices. Most expensive homes cluster 
                   along the coast, especially in cities like San Francisco, LA, and San Diego. 
               </p>
               <p>
@@ -72,10 +145,9 @@
               </p>
         </div>
         <div class="center">
-              <iframe src="d3_scatter_plot.html" width="100%" height="600px" frameborder="0"></iframe>
+              <iframe src="d3_scatter_plot.html" width="100%" height="1100px" frameborder="0"></iframe>
         </div>
 
-        <br>
         <h3>CORRELATION HEATMAP: INCOME, AGE, POPULATION VS HOUSE VALUE</h3>
         <div class="text">
             <p>
@@ -96,35 +168,35 @@
         </div>
 
         <br>
-        <h3>INTERACTIVE SCATTER PLOT AND BOX PLOT: OCEAN PROXIMITY</h3>
-        <div class="center">
-            <iframe src="scatter.html" width="70%" height="415px" frameborder="0"></iframe>
-        </div>
-        <div class="text">
-            <p>
-                This scatterplot shows the relationship between a household's median income and the median
-                value of the house, grouped by the house's proximity to the ocean. In general, homes with
-                higher prices tend to be located closer to the ocean. Similarly, homes that were located
-                inland were correlated with a lower median household income, further indicating that these
-                locations were more affordable compared to homes near the ocean.
-            </p>
-            <p> 
-                Because Altair sets a default maximum number of rows of 5000, we took a random sample of 3000 
-                points in our dataset. This scatter plot compares median resident income and house value, with 
-                points colored by ocean proximity category. The plot has radio boxes where ocean proximity 
-                categories can be selected - the selected category will be highlighted, and the others will 
-                have lower opacity for easier viewing. Hovering displays the ocean proximity category, median 
-                income, and median house value.
-            </p>
+        <h3>EXPLORING OCEAN PROXIMITY - INTERACTIVE SCATTERPLOT + BOXPLOTS</h3>
+        <div class="container">
+            <div class="text">
+                <p>
+                    This scatterplot shows the relationship between a household's median income and the median
+                    value of the house, grouped by the house's proximity to the ocean. In general, homes with
+                    higher prices tend to be located closer to the ocean. Similarly, homes that were located
+                    inland were correlated with a lower median household income, further indicating that these
+                    locations were more affordable compared to homes near the ocean.
+                </p>
+                <p> 
+                    Because Altair sets a default maximum number of rows of 5000, we took a random sample of 3000 
+                    points in our dataset. This scatter plot compares median resident income and house value, with 
+                    points colored by ocean proximity category. The plot has radio boxes where ocean proximity 
+                    categories can be selected - the selected category will be highlighted, and the others will 
+                    have lower opacity for easier viewing. Hovering displays the ocean proximity category, median 
+                    income, and median house value.
+                </p>
+            </div>
+            <div class="image">
+                <iframe src="scatter.html" width="100%" height="415px" frameborder="1px"></iframe>
+            </div>
         </div>
 
-        <br>
-        <h3>ON OCEAN PROXIMITY</h3>
         <div class="container">
             <div class="image">
-                <iframe src="boxplot.html" width="100%" height="400px" frameborder="0"></iframe>
+                <iframe src="boxplot.html" width="100%" height="475px" frameborder="0"></iframe>
             </div>
-            <div class="text">
+            <div class="text" style="padding-top: 0px">
                 <p>
                     These boxplots aim to show the distribution of median home values by their proximity to the
                     ocean. We can see immediately that inland homes had the lowest distribution and several outliers,
@@ -141,47 +213,6 @@
             </div>
         </div>
 
-        <br>
-        <h3>CORRELATION HEATMAP: INCOME, AGE, POPULATION, VS HOUSE VALUE</h3>
-        <div class="text">
-            <p>
-                The heatmap shows the relationship between key housing variables. The strongest positive correlation 
-                is between median income and median house value at +0.69, meaning that higher-income areas tend to 
-                have more expensive homes. In contrast, housing median age and population have much weaker or slightly 
-                negative correlations with house value, suggesting they play a less significant role in determining price. 
-            </p>
-            <p>
-                The chart was created using Seaborn with a coolwarm color palette, where warm colors like red represent
-                strong positive correlations and cool colors like blue indicate negative correlations. Labeled values 
-                and color contrast make it easy to spot patterns and compare how strongly different variables are 
-                related to housing prices.
-            </p>
-        </div>
-        <div class="center">
-            <iframe src="heatmap_output.png" width="100%" height="600px" frameborder="0"></iframe>
-        </div>
-
-        <br>
-        <h3>D3: INTERACTIVE HOUSING PRICES BY LOCATION</h3>
-        <div class="text">
-              <p>
-                  The D3 scatter plot shows housing prices across California based on location. Each dot represents a home, 
-                  positioned using its longitude on the X-axis and latitude on the Y-axis — just like a real map. Color 
-                  indicates the home's value, with brighter points showing higher prices. Most expensive homes cluster 
-                  along the coast, especially in cities like San Francisco, LA, and San Diego. 
-              </p>
-              <p>
-                  The chart is interactive: when you hover over a point, it shows the exact price and location. D3 loads 
-                  the data from a CSV file, maps it with coordinate scales, and colors it using a gradient. This makes 
-                  it easy to explore patterns and see how geography affects real estate.
-
-              </p>
-        </div>
-        <div class="center">
-              <iframe src="d3_scatter_plot.html" width="100%" height="600px" frameborder="0"></iframe>
-        </div>
-
-
         <h3>CONCLUSION</h3>
         <p>
             Through this visualization analysis, we aimed to explore housing records in California to discover how 
@@ -193,6 +224,14 @@
             To further explore this topic, we could continue analyzing environmental factors that 
             influence housing prices, such as a region's vulnerability to extreme temperatures, or shift our focus to 
             social factors, such as access to healthcare, safety and crime ratings, and walkability.
+        </p>
+        <p>
+            Although our data is based on the 1990 census, studying historical housing patterns offers important 
+            insights into how long-term economic, geographic, and environmental forces shape the market. Many of 
+            the issues observed — like coastal housing premiums and the impact of natural risks — remain relevant today. 
+            By understanding where these trends originated and how they have evolved, we can better assess the 
+            roots of California's current housing crisis and anticipate how future developments, such as climate 
+            change or migration shifts, may affect the market.
         </p>
     </body>
 </html>
