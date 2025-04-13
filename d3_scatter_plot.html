@@ -36,7 +36,6 @@
     const projection = d3.geoMercator().center([-119.5, 37.25]).scale(3500).translate([width / 2, height / 2]);
     const path = d3.geoPath().projection(projection);
 
-    // Load California GeoJSON
     d3.json("https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/california-counties.geojson").then(caMap => {
       svg.append("g")
         .selectAll("path")
@@ -47,7 +46,6 @@
         .attr("fill", "#f0f0f0")
         .attr("stroke", "#aaa");
 
-      // Load housing data
       d3.csv("data/housing-subset.csv").then(data => {
         data.forEach(d => {
           d.latitude = +d.latitude;
@@ -76,8 +74,46 @@
           .on("mouseout", function() {
             tooltip.transition().duration(500).style("opacity", 0);
           });
+
+        // ---------- LEGEND ----------
+        const legendWidth = 300;
+        const legendHeight = 10;
+        const legendMarginTop = 40;
+
+        const defs = svg.append("defs");
+
+        const linearGradient = defs.append("linearGradient")
+          .attr("id", "legend-gradient");
+
+        linearGradient.selectAll("stop")
+          .data(d3.ticks(0, 1, 10))
+          .enter().append("stop")
+          .attr("offset", d => `${d * 100}%`)
+          .attr("stop-color", d => d3.interpolateViridis(d));
+
+        svg.append("rect")
+          .attr("x", width / 2 - legendWidth / 2)
+          .attr("y", height - legendMarginTop - 20)
+          .attr("width", legendWidth)
+          .attr("height", legendHeight)
+          .style("fill", "url(#legend-gradient)")
+          .style("stroke", "#000");
+
+        const legendScale = d3.scaleLinear()
+          .domain(d3.extent(data, d => d.median_house_value))
+          .range([width / 2 - legendWidth / 2, width / 2 + legendWidth / 2]);
+
+        const legendAxis = d3.axisBottom(legendScale)
+          .ticks(5)
+          .tickFormat(d => `$${d3.format(".2s")(d)}`);
+
+        svg.append("g")
+          .attr("transform", `translate(0, ${height - legendMarginTop})`)
+          .call(legendAxis);
+        // ----------------------------
       });
     });
   </script>
 </body>
 </html>
+
