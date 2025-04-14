@@ -1,0 +1,41 @@
+Website Link: https://wongvicki.github.io/ds4200-project/
+
+Design Choices
+
+Choropleth Map:
+To create this visualization, we combined our housing data, which contained longitude and latitude points, 
+and county-level data for California. Initially, we had created a spatial plot with marks for each of the 
+data points, and an on-click display of median house value. While being able to see precise locations was 
+insightful, this was ultimately an ineffective way of summarizing our data, since there was such a high 
+density and range of points in urban areas like the Bay Area.
+To fix this problem, we instead chose to color code counties by their median housing price. Hovering 
+displays the county name, and the median housing price and income is displayed on click. Additionally, 
+given that this is a map, there is an implicit understanding of the proximity to the ocean.
+
+D3 Interactive Map:
+The D3 scatter plot shows housing prices across California based on location. Each dot represents 
+a home, positioned using its longitude on the X-axis and latitude on the Y-axis — just like a 
+real map. Color indicates the home's value, with brighter points showing higher prices. Most 
+expensive homes cluster along the coast, especially in cities like San Francisco, LA, and San Diego.
+The chart is interactive: when you hover over a point, it shows the exact price and location. 
+D3 loads the data from a CSV file, maps it with coordinate scales, and colors it using a gradient. 
+This makes it easy to explore patterns and see how geography affects real estate.
+
+Correlation Heatmap:
+The chart was created using Seaborn with a coolwarm color palette, where warm colors like red 
+represent strong positive correlations and cool colors like blue indicate negative correlations. 
+Labeled values and color contrast make it easy to spot patterns and compare how strongly different 
+variables are related to housing prices.
+
+Ocean Proximity Scatterplot:
+Because Altair sets a default maximum number of rows of 5000, we took a random sample of 3000 
+points in our dataset. This scatter plot compares median resident income and house value, with 
+points colored by ocean proximity category. The plot has radio boxes where ocean proximity 
+categories can be selected - the selected category will be highlighted, and the others will 
+have lower opacity for easier viewing. Hovering displays the ocean proximity category, 
+median income, and median house value.
+
+Ocean Proximity Boxplots:
+Utilizing several boxplots like this allows individuals to easily view and compare data 
+across many different categories. On hover, the chart will display more advanced statistics 
+for each plot, giving insight into the category's maximum, minimum, range, quartiles, and median.
